@@ -25,13 +25,13 @@ const addTask = (name) => {
 <template>
   <div>
 
-    <h1>Task List</h1>
+    <h1>タスクリスト</h1>
 
     <div v-for="(task, index) in taskList" :key="task.name">
       <Task v-model="taskList[index]" :task-status-type="taskStatusType"></Task>
     </div>
 
-    <h1>Add Task</h1>
+    <h1>新規タスク追加</h1>
 
     <input type="text" id="newTaskName" v-model="newTaskName" />
     <button @click="addTask(newTaskName)">Add task</button>
