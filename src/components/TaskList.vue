@@ -1,12 +1,14 @@
 <script setup>
 import {ref, reactive} from 'vue';
 
+const taskStatusType = ["todo", "doing", "done"];
+
 const taskList = reactive([{
   name: "task1",
-  isDone: false
+  status: "todo"
 }, {
   name: "task2",
-  isDone: false
+  status: "todo"
 }])
 
 const newTaskName = ref('');
@@ -14,7 +16,7 @@ const newTaskName = ref('');
 const addTask = (name) => {
   taskList.push({
     name: name, 
-    isDone: false
+    status: "todo"
   })
 } 
 </script>
@@ -25,7 +27,9 @@ const addTask = (name) => {
     <h1>Task List</h1>
 
     <div v-for="task in taskList" :key="task.name">
-      <input type="checkbox" :id="task.name" v-model="task.isDone" />
+      <select v-model="task.status">
+        <option v-for="status in taskStatusType" :key="status">{{ status }}</option>
+      </select>
       <label :for="task.name">{{ task.name }}</label>
     </div>
 
