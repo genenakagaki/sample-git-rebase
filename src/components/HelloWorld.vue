@@ -1,20 +1,39 @@
 <script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true
-  }
-})
+import {ref, reactive} from 'vue';
+
+const taskList = reactive([{
+  name: "task1",
+  isDone: false
+}, {
+  name: "task2",
+  isDone: false
+}])
+
+const newTaskName = ref('');
+
+const addTask = (name) => {
+  taskList.push({
+    name: name, 
+    isDone: false
+  })
+} 
 </script>
 
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
+  <div>
+
+    <h1>Task List</h1>
+
+    <div v-for="task in taskList" :key="task.name">
+      <input type="checkbox" :id="task.name" v-model="task.isDone" />
+      <label :for="task.name">{{ task.name }}</label>
+    </div>
+
+    <h1>Add Task</h1>
+
+    <input type="text" id="newTaskName" v-model="newTaskName" />
+    <button @click="addTask(newTaskName)">Add task</button>
+
   </div>
 </template>
 
@@ -36,6 +55,7 @@ h3 {
 }
 
 @media (min-width: 1024px) {
+
   .greetings h1,
   .greetings h3 {
     text-align: left;
