@@ -1,5 +1,6 @@
 <script setup>
 import {ref, reactive} from 'vue';
+import Task from './Task.vue'
 
 const taskStatusType = ["todo", "doing", "done"];
 
@@ -26,11 +27,8 @@ const addTask = (name) => {
 
     <h1>Task List</h1>
 
-    <div v-for="task in taskList" :key="task.name">
-      <select v-model="task.status">
-        <option v-for="status in taskStatusType" :key="status">{{ status }}</option>
-      </select>
-      <label :for="task.name">{{ task.name }}</label>
+    <div v-for="(task, index) in taskList" :key="task.name">
+      <Task v-model="taskList[index]" :task-status-type="taskStatusType"></Task>
     </div>
 
     <h1>Add Task</h1>
