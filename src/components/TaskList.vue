@@ -25,7 +25,7 @@ const addTask = (name) => {
 <template>
   <div>
 
-    <h1>タスクリスト</h1>
+    <h1>タスクリスト!!</h1>
 
     <div v-for="(task, index) in taskList" :key="task.name">
       <Task v-model="taskList[index]" :task-status-type="taskStatusType"></Task>
