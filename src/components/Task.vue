@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps({
   modelValue: Object,
-  taskStatusType: Array
+  taskStatusType: Array,
 })
 </script>
 
